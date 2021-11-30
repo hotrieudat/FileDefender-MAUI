@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui;
+﻿using FileDefender_MAUI.Views;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 using Application = Microsoft.Maui.Controls.Application;
@@ -11,7 +12,7 @@ namespace FileDefender_MAUI
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new LoginPage();
 		}
 	}
 }
