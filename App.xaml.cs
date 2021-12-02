@@ -12,7 +12,8 @@ namespace FileDefender_MAUI
 		{
 			InitializeComponent();
 
-			MainPage = new LoginPage();
+			//MainPage = new LoginPage();
+			MainPage = new NavigationPage(new LoginPage());
 		}
 	}
 }

@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Maui.Essentials;
 
 namespace FileDefender_MAUI.ViewModels
 {
@@ -84,20 +85,30 @@ namespace FileDefender_MAUI.ViewModels
 
         public async void Login()
         {
+
+            var current = Connectivity.NetworkAccess;
+
+            if (current != NetworkAccess.Internet)
+            {
+                // Connection to internet is available
+                MessagingCenter.Send(this, "Network", "No Network Connection");
+                return;
+            }
+
             if (!String.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
             {
                 IsBusy = true;
-                //await Task.Delay(2000);
+                await Task.Delay(2000);
                 //MessagingCenter.Send(this, "LoginAlert", Username);
                 using (HttpClient httpClient = new HttpClient())
                 {
                     httpClient.DefaultRequestHeaders.Add("User-Agent", "File Defender Client");
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
-                    httpClient.BaseAddress = new Uri("http://" + Address + ":" + 80);
+                    httpClient.BaseAddress = new Uri("http://" + "192.168.20.44" + ":" + 80);//Address
                     var formContent = new FormUrlEncodedContent(new[]
                     {
-                        new KeyValuePair<string, string>("login_code", Username),
-                        new KeyValuePair<string, string>("password", Password),
+                        new KeyValuePair<string, string>("login_code", Username),//Username
+                        new KeyValuePair<string, string>("password", Password),//Password
                         new KeyValuePair<string, string>("ldap_id", "0"),
                         new KeyValuePair<string, string>("client", "true"),
                         new KeyValuePair<string, string>("client_version", "1.4.6"),

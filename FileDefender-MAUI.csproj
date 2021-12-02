@@ -49,6 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Platforms\Android\Resources\drawable\splash_logo.png" />
+	  <None Remove="Platforms\Android\Resources\drawable\splash_screen.xml" />
+	  <None Remove="Platforms\Android\Resources\values\style.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
 
@@ -56,5 +62,25 @@
 		<OutputType>WinExe</OutputType>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <_MauiCompileToAdd Remove="Platforms\Android\SplashActivity.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="Platforms\Android\SplashActivity.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\FileDenfenderPage.xaml.cs">
+	    <DependentUpon>FileDenfenderPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\FileDenfenderPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
 	
 </Project>

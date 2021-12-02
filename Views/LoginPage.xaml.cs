@@ -16,11 +16,17 @@ namespace FileDefender_MAUI.Views
             MessagingCenter.Subscribe<LoginPageModel, string>(this, "Login information", (sender, message) =>
             {
                 DisplayAlert("Login information", message, "Oke");
+                Navigation.PushAsync(new FileDenfenderPage());
             });
 
             MessagingCenter.Subscribe<LoginPageModel, string>(this, "Login failed", (sender, message) =>
             {
                 DisplayAlert("Login failed", message, "Oke");
+            });
+
+            MessagingCenter.Subscribe<LoginPageModel, string>(this, "Network", (sender, message) =>
+            {
+                DisplayAlert("Network", message, "Oke");
             });
 
             this.BindingContext = loginModel;
@@ -35,6 +41,5 @@ namespace FileDefender_MAUI.Views
                 loginModel.SubmitCommand.Execute(null);
             };
         }
-
-	}
+    }
 }
